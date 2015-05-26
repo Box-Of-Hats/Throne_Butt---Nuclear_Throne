@@ -11,6 +11,10 @@ from colorama import Fore, Back, Style
 
 """
 
+Script is used to retrieve the Nuclear Throne daily scores for a specified user. The program will load up the scores
+for the player ID specified in the config.txt file.
+
+
 User can type "graph" to display a graph of all of their Thronebutt Ranks. 
 Config file can be changed to display a different user by default.
 
