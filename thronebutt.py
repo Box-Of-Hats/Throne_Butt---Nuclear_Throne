@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import urllib.request
+
 import os
 import matplotlib.pyplot as plt
 import datetime
@@ -63,6 +64,7 @@ def stripTD(row):
 	row = row.replace("</b>","")
 	row = row.replace("%","")
 	row = row.replace("#","")
+	row = row.replace("\n","")
 	return row
 
 
@@ -80,10 +82,15 @@ def getStats(currentRow):
 		elif dataNo == 5:
 			rank = stripTD( str(rowData) )
 
+		elif dataNo == 7:
+			killString = stripTD( str(rowData))
+			splitpoint = killString.find("<")
+			kills = killString[:splitpoint]
+
 		dataNo += 1
 
 	try:
-		current = (date,top,rank)
+		current = (date,top,rank,kills)
 		return(current)
 	except:
 		return("")
@@ -114,6 +121,7 @@ def printScore(tupleScore):
 	print("\t\t" + str(tupleScore[0]) )
 	print("\t\tRank: #" + str(tupleScore[2]) )
 	print("\t\tTop: " + str(tupleScore[1]) + "%")
+	print("\t\tKills: {}".format(tupleScore[3]))
 	print(Fore.RESET)
 
 
